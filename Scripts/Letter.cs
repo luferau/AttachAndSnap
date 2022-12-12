@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Letter : MonoBehaviour
 {
-    public UnityEvent OnCollisionEnterWithLetter;
-    public UnityEvent OnCollisionEnterWithOtherObject;
+    [SerializeField] private UnityEvent _onCollisionEnterWithLetter;
+    [SerializeField] private UnityEvent _onCollisionEnterWithOtherObject;
 
-    Rigidbody body;
+    private Rigidbody _body;
 
     private void Start()
     {
-        body = GetComponent<Rigidbody>();
+        _body = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -20,12 +18,12 @@ public class Letter : MonoBehaviour
         if (collision.rigidbody?.GetComponent<Letter>() != null)
         {
             Debug.Log("Letter collision with Letter (" + collision.collider.name + ")");
-            OnCollisionEnterWithLetter.Invoke();
+            _onCollisionEnterWithLetter.Invoke();
         }
         else
         {
             Debug.Log("Letter collision with other");
-            OnCollisionEnterWithOtherObject.Invoke();
+            _onCollisionEnterWithOtherObject.Invoke();
         }
     }
 }

@@ -1,14 +1,11 @@
 using Oculus.Interaction;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Connector : MonoBehaviour
 {
-    public AudioClip snapClip;
-    public AudioClip unsnapClip;
-
+    [SerializeField] private AudioClip _snapClip;
+    [SerializeField] private AudioClip _unsnapClip;
 
     public UnityEvent<Connector> onConnected;
     public UnityEvent<Connector> onDisconnected;
@@ -155,7 +152,7 @@ public class Connector : MonoBehaviour
         {
             Debug.Log(letterConnectors.letter + " " + side + " connected");
             connected = true;
-            audioSource?.PlayOneShot(snapClip);
+            audioSource?.PlayOneShot(_snapClip);
             
             onConnected.Invoke(this);
 
@@ -172,7 +169,7 @@ public class Connector : MonoBehaviour
         {
             Debug.Log(letterConnectors.letter + " " + side + " disconnected");
             connected = false;
-            audioSource?.PlayOneShot(unsnapClip);
+            audioSource?.PlayOneShot(_unsnapClip);
 
             onDisconnected.Invoke(this);
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Zone : MonoBehaviour
@@ -78,8 +76,6 @@ public class Zone : MonoBehaviour
     {
         AllowSound(true);
     }
-
-
 
     private bool IsMatchingZone(Collider other)
     {
